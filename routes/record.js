@@ -79,8 +79,14 @@ router.put('/:id',[
 })
 
 // 刪除頁面
-router.get('/delete', (req, res) => {
-  res.render('edit')
+router.delete('/:id/delete', (req, res) => {
+  Record.findOne({ _id:req.params.id }, (error, record) => {
+    if (error) console.error(error)
+    record.remove(error => {
+      if (error) console.error(error)
+      return res.redirect('/')
+    })
+  })
 })
 
 module.exports = router
