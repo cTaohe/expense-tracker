@@ -1,0 +1,37 @@
+<div class="container-login w-100">
+  <div class="row-form m-auto shadow-lg">
+    <!-- alert -->
+    {{!-- {{> messages}} --}}
+    <!-- login form -->
+    <form class="w-100" action="/users/login" method="POST">
+      <div class="login-title text-center">
+        <h1>Login</h1>
+      </div>
+      <div class="form-group border-bottom">
+        <label for="email">Email</label>
+        <input class="d-block w-100 login-form-input" type="email" id="email" name="email" placeholder="Type your email">
+      </div>
+      <!-- password -->
+      <div class="form-group border-bottom">
+        <label for="password">Password</label>
+        <input class="d-block w-100 login-form-input" type="password" id="password" name="password" placeholder="Type your password">
+      </div>
+      <div class="w-100 py-3">
+        <button class="btn btn-primary btn-block login-form-btn">LOGIN</button>
+      </div>
+      <!-- OAuth -->
+      <div class="text-center pt-5">
+        <span>Or login with</span>
+      </div>
+      <div class="container text-center py-2">
+        <a href="/auth/facebook" class="facebook social-icon"><i class="fab fa-facebook"></i></a>
+        <a href="/auth/google" class="google social-icon"><i class="fab fa-google"></i></a>
+      </div>
+      <!-- register button -->
+      <div class="container pt-5 text-center">
+        <span>Don't have an account?</span>
+        <a href="/users/register" class="text-center signUpNow">SIGN UP NOW</a>
+      </div>
+    </form>
+  </div>
+</div>

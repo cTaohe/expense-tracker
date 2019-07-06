@@ -1,0 +1,35 @@
+<div class="container-login w-100">
+  <div class="row-form m-auto shadow-lg">
+    <!-- alert -->
+    {{!-- {{> messages}} --}}
+    <!-- register form -->
+    <form class="w-100" action="/users/register" method="POST">
+      <div class="login-title text-center">
+        <h1>SIGN UP</h1>
+      </div>
+      <div class="form-group border-bottom">
+        <label for="name">Name</label>
+        <input class="d-block w-100 login-form-input" type="text" id="name" name="name" placeholder="Type your name">
+      </div>
+      <div class="form-group border-bottom">
+        <label for="email">Email</label>
+        <input class="d-block w-100 login-form-input" type="email" id="email" name="email" placeholder="Type your email">
+      </div>
+      <div class="form-group border-bottom">
+        <label for="password">Password</label>
+        <input class="d-block w-100 login-form-input" type="password" id="password" name="password" placeholder="Type your password">
+      </div>
+      <div class="form-group border-bottom">
+        <label for="password2">Confirm Password Again</label>
+        <input class="d-block w-100 login-form-input" type="password" id="password2" name="password2" placeholder="Type password again">
+      </div>
+      <div class="w-100 py-3">
+        <button class="btn btn-primary btn-block login-form-btn">REGISTER</button>
+      </div>
+      <div class="container pt-5 text-center">
+        <span>Have an account?</span>
+        <a href="/users/login" class="text-center signUpNow">LOGIN NOW</a>
+      </div>
+    </form>
+  </div>
+</div>
