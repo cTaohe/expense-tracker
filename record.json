@@ -1,0 +1,52 @@
+{
+  "records": [
+    { 
+     "name": "高爾夫球球具",
+     "date": "2019-01-01",
+     "category": "recreation",
+     "amount": "7000"
+    },
+    { 
+     "name": "汽車加油費用",
+     "date": "2019-01-05",
+     "category": "traffic",
+     "amount": "1000"
+    },
+    { 
+     "name": "午餐費",
+     "date": "2019-03-15",
+     "category": "food",
+     "amount": "85"
+    },
+    { 
+     "name": "應酬",
+     "date": "2019-02-04",
+     "category": "food",
+     "amount": "999"
+    },
+    { 
+     "name": "房租",
+     "date": "2019-01-15",
+     "category": "living",
+     "amount": "100"
+    },
+    { 
+     "name": "菜錢",
+     "date": "2019-02-01",
+     "category": "living",
+     "amount": "168"
+    },
+    { 
+     "name": "學費",
+     "date": "2019-05-25",
+     "category": "other",
+     "amount": "3210"
+    },
+    { 
+     "name": "公車票",
+     "date": "2019-04-07",
+     "category": "traffic",
+     "amount": "16"
+    }
+  ]
+}
