@@ -9,106 +9,35 @@
       <option value="">五月</option>
     </select>
     <select name="category" id="category">
-      <option value="">類別</option>
-      <option value="">家居物業</option>
-      <option value="">交通出行</option>
-      <option value="">休閒娛樂</option>
-      <option value="">餐飲食品</option>
-      <option value="">其他</option>
+      <option value="" selected>類別</option>
+      <option value="living">家居物業</option>
+      <option value="traffic">交通出行</option>
+      <option value="recreation">休閒娛樂</option>
+      <option value="food">餐飲食品</option>
+      <option value="other">其他</option>
     </select>
     <a href="/record/new" class="btn btn-success">新增</a>
   </div>
-  
   <ul class="list-group">
+    {{#each records}}
     <li class="list-group-item border-0">
       <div class="row">
         <div class="col row">
           <div class="icon display-4 mx-3"><i class="fas fa-home"></i></div>
           <div class="itemsName mr-auto">
-            <h3>家居物業</h3>
-            <p>2019/01/01</p>
+            <h3>{{ this.category }}</h3>
+            <p>{{ this.date }}</p>
           </div>
-          <div class="text-center my-auto">60</div>
+          <div class="text-center my-auto">{{ this.amount }}</div>
         </div>
         <div class="col-2 d-flex justify-content-end align-items-center trackEdit">
-          <a href="/record/edit" class="">EDIT</a>
-          <form action="" method="post" class="d-inline">
-            <button type="submit" class="">DELETE</button>
+          <a href="record/{{ this.id }}/edit" class="">編輯</a>
+          <form action="/record/{{this.id}}/delete?_method=DELETE" method="post" class="d-inline">
+            <button type="submit" class="">刪除</button>
           </form>
         </div>
       </div>
     </li>
-    <li class="list-group-item border-0">
-      <div class="row">
-        <div class="col row">
-          <div class="icon display-4 mx-3"><i class="fas fa-shuttle-van"></i></div>
-          <div class="itemsName mr-auto">
-            <h3>交通出行</h3>
-            <p>2019/01/01</p>
-          </div>
-          <div class="text-center my-auto">60</div>
-        </div>
-        <div class="col-2 d-flex justify-content-end align-items-center trackEdit">
-          <a href="/record/edit" class="">EDIT</a>
-          <form action="" method="post" class="d-inline">
-            <button type="submit" class="">DELETE</button>
-          </form>
-        </div>
-      </div>
-    </li>
-    <li class="list-group-item border-0">
-      <div class="row">
-        <div class="col row">
-          <div class="icon display-4 mx-3"><i class="fas fa-grin-beam"></i></div>
-          <div class="itemsName mr-auto">
-            <h3>休閒娛樂</h3>
-            <p>2019/01/01</p>
-          </div>
-          <div class="text-center my-auto">60</div>
-        </div>
-        <div class="col-2 d-flex justify-content-end align-items-center trackEdit">
-          <a href="/record/edit" class="">EDIT</a>
-          <form action="" method="post" class="d-inline">
-            <button type="submit" class="">DELETE</button>
-          </form>
-        </div>
-      </div>
-    </li>
-    <li class="list-group-item border-0">
-      <div class="row">
-        <div class="col row">
-          <div class="icon display-4 mx-3"><i class="fas fa-utensils"></i></div>
-          <div class="itemsName mr-auto">
-            <h3>餐飲食品</h3>
-            <p>2019/01/01</p>
-          </div>
-          <div class="text-center my-auto">60</div>
-        </div>
-        <div class="col-2 d-flex justify-content-end align-items-center trackEdit">
-          <a href="/record/edit" class="">EDIT</a>
-          <form action="" method="post" class="d-inline">
-            <button type="submit" class="">DELETE</button>
-          </form>
-        </div>
-      </div>
-    </li>
-    <li class="list-group-item border-0">
-      <div class="row">
-        <div class="col row">
-          <div class="icon display-4 mx-3"><i class="fas fa-pen"></i></div>
-          <div class="itemsName mr-auto">
-            <h3>其他</h3>
-            <p>2019/01/01</p>
-          </div>
-          <div class="text-center my-auto">60</div>
-        </div>
-        <div class="col-2 d-flex justify-content-end align-items-center trackEdit">
-          <a href="/record/edit" class="">EDIT</a>
-          <form action="" method="post" class="d-inline">
-            <button type="submit" class="">DELETE</button>
-          </form>
-        </div>
-      </div>
-    </li>
+    {{/each}}
   </ul>
 </div>

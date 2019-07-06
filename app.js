@@ -6,6 +6,16 @@ const mongoose = require('mongoose')
 const methodOverride = require('method-override')
 const bodyParser = require('body-parser')
 
+// 設定 db
+mongoose.connect('mongodb://localhost/record', { useNewUrlParser: true })
+const db = mongoose.connection
+db.on('error', () => {
+  console.log('mongoose error')
+})
+db.once('open', () => {
+  console.log('mongoose connected')
+})
+
 // 設定 bodyparser
 app.use(bodyParser.urlencoded({ extended: true }))
 
@@ -20,9 +30,9 @@ app.use(methodOverride('_method'))
 app.use(express.static('public'))
 
 // routes
-app.use('/', require('./routes/home'))
-app.use('/record', require('./routes/record'))
-app.use('/users', require('./routes/user'))
+app.use('/', require('./routes/home.js'))
+app.use('/record', require('./routes/record.js'))
+app.use('/users', require('./routes/user.js'))
 
 // start and listen server
 app.listen(port, () => {
