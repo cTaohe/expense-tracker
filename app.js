@@ -5,7 +5,7 @@ const exphbs = require('express-handlebars')
 const mongoose = require('mongoose')
 const methodOverride = require('method-override')
 const bodyParser = require('body-parser')
-
+const exphbsHelper = require('./handlebars-helpers.js')
 // 設定 db
 mongoose.connect('mongodb://localhost/record', { useNewUrlParser: true })
 const db = mongoose.connection

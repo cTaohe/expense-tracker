@@ -2,11 +2,6 @@
   <div class="sortList m-auto text-center">
     <select name="date" id="date">
       <option value="">月份</option>
-      <option value="">一月</option>
-      <option value="">二月</option>
-      <option value="">三月</option>
-      <option value="">四月</option>
-      <option value="">五月</option>
     </select>
     <select name="category" id="category">
       <option value="" selected>類別</option>
@@ -18,14 +13,22 @@
     </select>
     <a href="/record/new" class="btn btn-success">新增</a>
   </div>
+  <div class="">
+    <div class="row">
+        <h5 class="col-5 text-right">總金額:</h5>
+        <h1 class="col-7">45645646</h1>
+    </div>
+  </div>
   <ul class="list-group">
     {{#each records}}
     <li class="list-group-item border-0">
       <div class="row">
         <div class="col row">
-          <div class="icon display-4 mx-3"><i class="fas fa-home"></i></div>
+          <div class="col-2 display-4 mx-3">
+            {{#categoryIcon this.category}}{{/categoryIcon}}
+          </div>
           <div class="itemsName mr-auto">
-            <h3>{{ this.category }}</h3>
+            <h3>{{ this.name }}</h3>
             <p>{{ this.date }}</p>
           </div>
           <div class="text-center my-auto">{{ this.amount }}</div>
