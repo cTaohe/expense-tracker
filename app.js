@@ -6,6 +6,9 @@ const mongoose = require('mongoose')
 const methodOverride = require('method-override')
 const bodyParser = require('body-parser')
 const exphbsHelper = require('./handlebars-helpers.js')
+const passport = require('passport')
+const session = require('express-session')
+
 // 設定 db
 mongoose.connect('mongodb://localhost/record', { useNewUrlParser: true })
 const db = mongoose.connection
@@ -14,6 +17,23 @@ db.on('error', () => {
 })
 db.once('open', () => {
   console.log('mongoose connected')
+})
+
+// 設定 session
+app.use(session({
+  secret: 'record',
+  resave: 'false',
+  saveUninitialized: 'false'
+}))
+
+// passport
+app.use(passport.initialize())
+app.use(passport.session())
+require('./config/passport.js')(passport)
+app.use((req, res, next) => {
+  res.locals.user = req.user
+  res.locals.isAuthenticated = req.isAuthenticated
+  next()
 })
 
 // 設定 bodyparser
