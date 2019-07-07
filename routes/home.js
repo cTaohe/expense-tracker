@@ -33,10 +33,10 @@ router.get('/',authenticated, (req, res) => {
   Record.find({ 
     userId: req.user._id,
     date: {
-      $regex: new RegExp("2019-" + months, "i")
+      $regex: months, $options: "i"
     },
     category: {
-      $regex: new RegExp(categorys, "i")
+      $regex: categorys, $options: "i"
     }
   }).exec((error, records) => {
     if (error) console.error(error)
