@@ -10,6 +10,10 @@ const passport = require('passport')
 const session = require('express-session')
 const flash = require('connect-flash')
 
+if(process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
+
 // 設定 db
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/record', { useNewUrlParser: true, useCreateIndex: true  })
 const db = mongoose.connection
@@ -64,6 +68,7 @@ app.use(express.static('public'))
 app.use('/', require('./routes/home.js'))
 app.use('/record', require('./routes/record.js'))
 app.use('/users', require('./routes/user.js'))
+app.use('/auth', require('./routes/auth.js'))
 
 // start and listen server
 app.listen(process.env.PORT || port, () => {
