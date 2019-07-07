@@ -27,6 +27,17 @@ node models/seeds/seed.js
 npm run dev
 ```
 
+## .env
+在專案底下新增 .env ， 在 `facebook developer`、 `console google developer` 註冊新應用程式取得 client ID 以及 client secret。
+```
+FACEBOOK_ID= //your Client ID
+FACEBOOK_SECRET= //your Client secret
+FACEBOOK_CALLBACK=http://localhost:3000/auth/facebook/callback
+GOOGLE_ID= //your Client ID
+GOOGLE_SECRET= //your Client secret
+GOOGLE_CALLBACK=http://localhost:3000/auth/google/callback
+```
+
 ## 種子帳號
 user1
 - email:user1@example.com
