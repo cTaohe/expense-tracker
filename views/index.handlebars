@@ -1,22 +1,29 @@
 <div class="container">
-  <div class="sortList m-auto text-center">
-    <select name="date" id="date">
-      <option value="">月份</option>
-    </select>
-    <select name="category" id="category">
-      <option value="" selected>類別</option>
-      <option value="living">家居物業</option>
-      <option value="traffic">交通出行</option>
-      <option value="recreation">休閒娛樂</option>
-      <option value="food">餐飲食品</option>
-      <option value="other">其他</option>
-    </select>
+  <div class="row m-auto justify-content-center">
+    <div class="dropdown">
+      <button class="btn btn-success dropdown-toggle" id="months" data-toggle="dropdown">月份</button>
+      <div class="dropdown-menu" aria-labelledby="months">
+        <a href="/?months=" class="dropdown-item">全部</a>
+        {{#each monthsHash}}
+        <a href="/?months={{@key}}&categorys={{../categorys}}" class="dropdown-item" aria-labelledby="months">{{this}}</a>
+        {{/each}}
+      </div>
+    </div>
+    <div class="dropdown">
+      <button class="btn btn-success dropdown-toggle" id="categoryDropdown" data-toggle="dropdown">分類</button>
+      <div class="dropdown-menu" aria-labelledby="categoryDropdown">
+        <a href="/?categorys=" class="dropdown-item">全部</a>
+        {{#each categorysHash}}
+        <a href="/?categorys={{@key}}&months={{../months}}" class="dropdown-item">{{this}}</a>
+        {{/each}}
+      </div>
+    </div>
     <a href="/record/new" class="btn btn-success">新增</a>
   </div>
   <div class="">
     <div class="row">
         <h5 class="col-5 text-right">總金額:</h5>
-        <h1 class="col-7">45645646</h1>
+        <h1 class="col-7">{{totalAmount}}</h1>
     </div>
   </div>
   <ul class="list-group">

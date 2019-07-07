@@ -7,7 +7,7 @@ Handlebars.registerHelper('categoryIcon', (category) => {
     'traffic': '<i class="fas fa-shuttle-van"></i>',
     'recreation': '<i class="fas fa-grin-beam"></i>',
     'food': '<i class="fas fa-utensils"></i>',
-    'other': '<i class="fas fa-pen"></i>',
+    'other': '<i class="fas fa-pen"></i>'
   }
   // gategory match categoryImage key return value
   return categoryImage[category]

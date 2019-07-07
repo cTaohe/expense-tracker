@@ -28,12 +28,14 @@ router.post('/new', authenticated, [
     console.log(errors.array());
     return res.status(422).render({ errors: errors.array() })
   }
+  console.log(req.user._id)
   // 新增支出物件
   const newRecord = new Record({
     name: req.body.name,
     date: req.body.date,
     category: req.body.category,
-    amount: req.body.amount
+    amount: req.body.amount,
+    userId: req.user._id
   })
   // 儲存物件
   newRecord.save(error => {
@@ -44,7 +46,7 @@ router.post('/new', authenticated, [
 
 // 編輯頁面
 router.get('/:id/edit', authenticated, (req, res) => {
-  Record.findById(req.params.id, (error, record) => {
+  Record.findOne({ _id: req.params.id, userId: req.user._id }, (error, record) => {
     if (error) console.error(error)
     return res.render('edit', { record: record })
   })
@@ -68,7 +70,7 @@ router.put('/:id', authenticated, [
     return res.status(422).render({ errors: errors.array() })
   }
 
-  Record.findOne({ _id: req.params.id }, (error, record) => {
+  Record.findOne({ _id: req.params.id, userId: req.user._id }, (error, record) => {
     if (error) console.error(error)
     Object.assign(record, req.body)
     record.save(error => {
@@ -76,12 +78,11 @@ router.put('/:id', authenticated, [
       return res.redirect(`/record/${req.params.id}`)
     })
   })
-  res.render('edit')
 })
 
 // 刪除頁面
 router.delete('/:id/delete', authenticated, (req, res) => {
-  Record.findOne({ _id:req.params.id }, (error, record) => {
+  Record.findOne({ _id: req.params.id, userId: req.user._id }, (error, record) => {
     if (error) console.error(error)
     record.remove(error => {
       if (error) console.error(error)
