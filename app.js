@@ -8,6 +8,7 @@ const bodyParser = require('body-parser')
 const exphbsHelper = require('./handlebars-helpers.js')
 const passport = require('passport')
 const session = require('express-session')
+const flash = require('connect-flash')
 
 // 設定 db
 mongoose.connect('mongodb://localhost/record', { useNewUrlParser: true, useCreateIndex: true  })
@@ -33,6 +34,16 @@ require('./config/passport.js')(passport)
 app.use((req, res, next) => {
   res.locals.user = req.user
   res.locals.isAuthenticated = req.isAuthenticated
+  next()
+})
+
+// 設定 flash
+app.use(flash())
+app.use((req, res, next) => {
+  res.locals.user = req.user
+  res.locals.isAuthenticated = req.isAuthenticated()
+  res.locals.success_msg = req.flash('success_msg')
+  res.locals.warning_msg = req.flash('warning_msg')
   next()
 })
 

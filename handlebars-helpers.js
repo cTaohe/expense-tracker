@@ -16,9 +16,3 @@ Handlebars.registerHelper('categoryIcon', (category) => {
 Handlebars.registerHelper('pickedOption', (value1, value2) => {
   return (value1 === value2)? 'selected' : ''
 })
-
-Handlebars.registerHelper('pickedDate', (date) => {
-  const MM = (date.getMonth() + 1 < 10 ? `0${date.getMonth() + 1}` : `${date.getMonth()}`)
-  const DD = (date.getDate() < 10 ? `0${date.getDate()}` : `${date.getDate()}`)
-  return `${date.getFullYear()}-${MM}-${DD}`
-})
