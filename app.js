@@ -67,5 +67,5 @@ app.use('/users', require('./routes/user.js'))
 
 // start and listen server
 app.listen(process.env.PORT || port, () => {
-  console.log(`The express is on http://localhost:${port}`)
+  console.log('App is running')
 })
