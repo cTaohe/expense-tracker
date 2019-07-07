@@ -2,14 +2,15 @@ const express = require('express')
 const router = express.Router()
 const Record = require('../models/record.js')
 const { check, validationResult } = require('express-validator')
+const { authenticated } = require('../config/auth.js')
 
 // 新支出頁面
-router.get('/new', (req, res) => {
+router.get('/new', authenticated, (req, res) => {
   res.render('new')
 })
 
 // 檢查 新支出
-router.post('/new', [
+router.post('/new', authenticated, [
   check('name')
     .not().isEmpty().withMessage('名稱需要填寫才知道花在哪唷!'),
   check('date')
@@ -42,7 +43,7 @@ router.post('/new', [
 })
 
 // 編輯頁面
-router.get('/:id/edit', (req, res) => {
+router.get('/:id/edit', authenticated, (req, res) => {
   Record.findById(req.params.id, (error, record) => {
     if (error) console.error(error)
     return res.render('edit', { record: record })
@@ -50,7 +51,7 @@ router.get('/:id/edit', (req, res) => {
 })
 
 // 檢查 編輯
-router.put('/:id',[
+router.put('/:id', authenticated, [
   check('name')
     .not().isEmpty().withMessage('名稱需要填寫才知道花在哪唷!'),
   check('date')
@@ -79,7 +80,7 @@ router.put('/:id',[
 })
 
 // 刪除頁面
-router.delete('/:id/delete', (req, res) => {
+router.delete('/:id/delete', authenticated, (req, res) => {
   Record.findOne({ _id:req.params.id }, (error, record) => {
     if (error) console.error(error)
     record.remove(error => {
