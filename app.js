@@ -11,7 +11,7 @@ const session = require('express-session')
 const flash = require('connect-flash')
 
 // 設定 db
-mongoose.connect('mongodb://localhost/record', { useNewUrlParser: true, useCreateIndex: true  })
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/record', { useNewUrlParser: true, useCreateIndex: true  })
 const db = mongoose.connection
 db.on('error', () => {
   console.log('mongoose error')
@@ -66,6 +66,6 @@ app.use('/record', require('./routes/record.js'))
 app.use('/users', require('./routes/user.js'))
 
 // start and listen server
-app.listen(port, () => {
+app.listen(process.env.PORT || port, () => {
   console.log(`The express is on http://localhost:${port}`)
 })
