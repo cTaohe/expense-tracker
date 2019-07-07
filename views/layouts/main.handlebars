@@ -19,7 +19,9 @@
   <nav class="navbar navbar-light bg-light">
     <a href="/" class="navbar-brand">家庭記帳本</a>
     <div class="navbar-right">
-      <a href="/users/login" class="btn btn-outline-primary">LOGIN</a>
+      {{#if isAuthenticated}}
+        <a href="/users/logout" class="btn btn-outline-info">LOGOUT</a>
+      {{/if}}
     </div>
   </nav>
   <!-- display template-->

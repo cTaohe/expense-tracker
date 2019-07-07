@@ -13,7 +13,7 @@ router.get('/login', (req, res) => {
 router.post('/login', (req, res, next) => {
   passport.authenticate('local', {
     successRedirect: '/',
-    failureRedirect: '/user/login'
+    failureRedirect: '/users/login'
   })(req, res, next)
 })
 
@@ -73,7 +73,8 @@ router.post('/register', (req, res) => {
 
 // 登出
 router.get('/logout', (req, res) => {
-  res.send('logout')
+  req.logOut()
+  res.redirect('/users/login')
 })
 
 module.exports = router

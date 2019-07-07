@@ -10,7 +10,7 @@ const passport = require('passport')
 const session = require('express-session')
 
 // 設定 db
-mongoose.connect('mongodb://localhost/record', { useNewUrlParser: true })
+mongoose.connect('mongodb://localhost/record', { useNewUrlParser: true, useCreateIndex: true  })
 const db = mongoose.connection
 db.on('error', () => {
   console.log('mongoose error')

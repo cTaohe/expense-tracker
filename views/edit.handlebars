@@ -1,5 +1,5 @@
 <div class="row mt-5">
-  <form action="/record/edit" method="POST" class="m-auto col-6">
+  <form action="/record/{{record.id}}?_method=PUT" method="POST" class="m-auto col-6">
     <div class="row">
       <span class="text-danger col-2 text-right">*必填欄位</span>
       <h1 class="d-inline-block col-8 text-center">請修改你的支出</h1>
@@ -8,14 +8,14 @@
     <div class="form-group row">
       <label for="name" class="col-2 text-right">名稱<span class="text-danger">*</span>:</label>
       <div class="col-8">
-        <input type="text" class="form-control" name="name" id="name" required>
+        <input type="text" class="form-control" name="name" id="name" value="{{ record.name }}" required>
       </div>
     </div>
     <!-- date -->
     <div class="form-group row">
       <label for="date" class="col-2 text-right">日期<span class="text-danger">*</span>:</label>
       <div class="col-8">
-        <input type="date" class="form-control" name="date" id="date" required>
+        <input type="date" class="form-control" name="date" id="date" value="{{pickedDate record.date }}" required>
       </div>
     </div>
     <!-- category -->
@@ -24,11 +24,11 @@
       <div class="col-8">
         <select name="category" class="form-control" id="category" required>
           <option value="" selected>類別</option>
-          <option value="living">家居物業</option>
-          <option value="traffic">交通出行</option>
-          <option value="recreation">休閒娛樂</option>
-          <option value="food">餐飲食品</option>
-          <option value="other">其他</option>
+          <option value="living" {{pickedOption record.category 'living' }}>家居物業</option>
+          <option value="traffic" {{pickedOption record.category 'traffic' }}>交通出行</option>
+          <option value="recreation" {{pickedOption record.category 'recreation' }}>休閒娛樂</option>
+          <option value="food" {{pickedOption record.category 'food' }}>餐飲食品</option>
+          <option value="other" {{pickedOption record.category 'other' }}>其他</option>
         </select>
       </div>
     </div>
@@ -36,7 +36,7 @@
     <div class="form-group row">
       <label for="amount" class="col-2 text-right">金額<span class="text-danger">*</span>:</label>
       <div class="col-8">
-        <input type="number" class="form-control" name="amount" id="amount" required>
+        <input type="number" class="form-control" name="amount" id="amount" value="{{ record.amount }}" required>
       </div>
     </div>
     <!-- button -->
