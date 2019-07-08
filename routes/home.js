@@ -37,10 +37,11 @@ router.get('/',authenticated, (req, res) => {
     }
   }).exec((error, records) => {
     if (error) console.error(error)
-    const hasStr = (target, str) => target.toString().includes(str)
     const record = records.filter(({date}) => {
-      return [date.getMonth() + 1].some(str => hasStr(str, months))
+      return (date.getMonth() + 1).toString().includes(months)
     })
+    console.log(categorys)
+    console.log(months)
     let totalAmount = record.reduce((accumulator, currentValue) => accumulator + currentValue.amount, 0)
     res.render('index', { records:record, monthsHash, categorysHash, totalAmount, months, categorys})
   })
