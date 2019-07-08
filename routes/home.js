@@ -5,15 +5,15 @@ const { authenticated } = require('../config/auth.js')
 router.get('/',authenticated, (req, res) => {
   // 月份選單
   const monthsHash = {
-    '01':'一月',
-    '02':'二月',
-    '03':'三月',
-    '04':'四月',
-    '05':'五月',
-    '06':'六月',
-    '07':'七月',
-    '08':'八月',
-    '09':'九月',
+    '1':'一月',
+    '2':'二月',
+    '3':'三月',
+    '4':'四月',
+    '5':'五月',
+    '6':'六月',
+    '7':'七月',
+    '8':'八月',
+    '9':'九月',
     '10':'十月',
     '11':'十一月',
     '12':'十二月'
@@ -32,16 +32,17 @@ router.get('/',authenticated, (req, res) => {
   // 列出支出
   Record.find({ 
     userId: req.user._id,
-    date: {
-      $regex: new RegExp("2019-" + months, "i")
-    },
     category: {
       $regex: categorys, $options: "i"
     }
   }).exec((error, records) => {
     if (error) console.error(error)
-    let totalAmount = records.reduce((accumulator, currentValue) => accumulator + currentValue.amount, 0)
-    res.render('index', { records, monthsHash, categorysHash, totalAmount, months, categorys})
+    const hasStr = (target, str) => target.toString().includes(str)
+    const record = records.filter(({date}) => {
+      return [date.getMonth() + 1].some(str => hasStr(str, months))
+    })
+    let totalAmount = record.reduce((accumulator, currentValue) => accumulator + currentValue.amount, 0)
+    res.render('index', { records:record, monthsHash, categorysHash, totalAmount, months, categorys})
   })
 })
 module.exports = router
