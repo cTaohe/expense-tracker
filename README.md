@@ -24,7 +24,6 @@ git https://github.com/cTaohe/expense-tracker.git
 cd /expense-tracker
 npm install
 node models/seeds/seed.js
-npm run dev
 ```
 
 ## .env
@@ -36,6 +35,12 @@ FACEBOOK_CALLBACK=http://localhost:3000/auth/facebook/callback
 GOOGLE_ID= //your Client ID
 GOOGLE_SECRET= //your Client secret
 GOOGLE_CALLBACK=http://localhost:3000/auth/google/callback
+```
+
+## 執行
+專案資料夾下
+```
+npm run dev
 ```
 
 ## 種子帳號
